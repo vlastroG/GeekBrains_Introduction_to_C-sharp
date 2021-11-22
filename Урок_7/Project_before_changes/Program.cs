@@ -35,8 +35,12 @@ namespace Project_before_changes
 
             }
 
-            // Process.Start("chrome.exe", stringBuilder.ToString()); //--> Эта строчка должна запускаться после изменения
-            Process.Start("chrome.exe", defaultPage); // --> Эта строчка должна быть удалена после изменения
+            Process process = new Process();
+            process.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+            process.StartInfo.Arguments = defaultPage;
+            // process.StartInfo.Arguments = stringBuilder.ToString(); //--> Эта строчка должна запускаться после изменения
+
+            process.Start(); // --> Эта строчка должна быть удалена после изменения
             // Сборку сделал через msbuild, предварительно написав код в Visual Studio и сохранив его через Ctrl+S
         }
         static string GetStringFromUser(string messageToUser)
